@@ -1,8 +1,9 @@
 /*
   Jingzhen(Journey) Hu's project 1 
  This project read from the a novel and set up a color rule for 26 characters and symbol.
- Then, after normalizing (case-insensitive), judging and sorting the datas input, I record the frequencies of the letters and generate rectangulars to represent the datas.
- In the process, I also searched for the keyword 'Alice', counted the frequencies, and highlighed them in the canvas.
+ Then, after normalizing (case-insensitive), judging and sorting the datas input, I record the frequencies of the characters(ignore the symbols' frequencies; filtering) 
+ Then call the prepareDraw to generate simple information to draw squares to represent the datas.
+ In the process, I also searched for the specific keyword 'Alice', counted the frequencies, and highlighed them in the canvas.
  Finally, the frequencies display in a sector diagram.
  It has three displays. 
  The start tells people how to interact.
