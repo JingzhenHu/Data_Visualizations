@@ -3,18 +3,38 @@ class Data
   PVector loc;
   color fill;
   float hue;
- 
-   public Data(PVector location, color rgb)
+  final int radius = 15;
+  
+   public Data(color rgb)
    {
-      this.loc = location;
+      loc = new PVector(random(115, 885), random(25, 385));
       this.fill = rgb;
       this.hue = hue(rgb);
    }
    
    void displayData()
    {
+      stroke(fill);
       fill(fill);
-      ellipse(this.loc.x, this.loc.y, 15, 15); 
+      ellipse(loc.x, loc.y, 15, 15); 
    }
-   
+   /*
+   void remove()
+   {
+      stroke(255);
+      fill(255);
+      ellipse(loc.x, loc.y, radius, radius);
+   }
+   */
+   boolean checkCollison(PVector pos)
+   {
+     boolean isCollison = false;
+     PVector temp = new PVector(loc.x, loc.y);
+     temp = temp.sub(pos);
+     if(temp.mag()<= (radius + r)/2)
+     {
+       isCollison = true;
+     }
+     return isCollison;
+   }
 }
