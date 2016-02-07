@@ -118,7 +118,7 @@ void draw()
     {
       if (key == 'b' || key == 'B') status = 0; 
       if (key == 's') status = 1;
-      if (key == 'T') status = 2;
+      if (key == 't') status = 2;
       if (key == 'S') status = 3;
     }
   }
@@ -133,6 +133,7 @@ void displayBG()
   line(500, 0, 500, 600);
   line(700, 0, 700, 600);
   textSize(18);
+  fill(0);
   text("Add", 180, 20);
   text("Delete", 370, 20);
   text("Add", 580, 20);

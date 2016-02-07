@@ -47,15 +47,160 @@ class Tree {
     text("Tommy Tree", 550, 420);
     textSize(12);
     text("Element: " + currMember, 515, 580);
+        
+    for(int i = 1; i < treeData.size(); i++)
+    {
+      if (i % 2 == 0)
+        line(treeData.get(i).loc.x, treeData.get(i).loc.y, treeData.get((i-2)/2).loc.x, treeData.get((i-2)/2).loc.y);
+      if (i % 2 == 1)
+       line(treeData.get(i).loc.x, treeData.get(i).loc.y, treeData.get((i-1)/2).loc.x, treeData.get((i-1)/2).loc.y);
+    }
   }
   public void addIn(Data dataAdd)
   {
-    if (treeData.size()== 0)   dataAdd.loc = new PVector(600, 420);
-    else
-    //int xCor = treeData.get(treeData.size()-1).loc.x + 
-    //int yCor = treeData.get(treeData.size()-1).loc.y +
-    treeData.add(dataAdd); 
-    currMember++;
+    //As 2^7 = 128 which exceed the total number of data, then
+    //we choose 2^6 +2^5 to be the max possible situation that results into the total 7 digits in the binary form
+    String binaryStr = binary(treeData.size()+1, 7); 
+    /*
+    char binaryList[] = new char[7];
+     for (int i = 0; i < 7; i++)
+     {
+     binaryList[i] = binaryStr.charAt(i);
+     }
+     */
+    int len = Integer.parseInt(binaryStr);
+    if (treeData.size() == 0)   
+    {
+      dataAdd.loc = new PVector(600, 440);
+      dataAdd.setRadius(5);
+      treeData.add(dataAdd); 
+      currMember++;
+    } else if (String.valueOf(len).length() == 2)
+    {
+      if ((treeData.size()+1) % 2 == 0)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x - 50*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 10*sqrt(2))); 
+      if ((treeData.size()+1) % 2 == 1)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x + 50*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 10*sqrt(2))); 
+      dataAdd.setRadius(5);
+      treeData.add(dataAdd); 
+      stroke(0);
+      line(dataAdd.loc.x, dataAdd.loc.y, treeData.get((treeData.size()-1)/2).loc.x, treeData.get((treeData.size()-1)/2).loc.y);
+      currMember++;
+    } else if (String.valueOf(len).length() == 3)
+    {
+      if ((treeData.size()+1) % 2 == 0)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x - 25*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 15*sqrt(2))); 
+      //line(dataAdd.loc.x, dataAdd.loc.y, treeData.get((treeData.size()-1)/2).loc.x, treeData.get((treeData.size()-1)/2).loc.y);
+      if ((treeData.size()+1) % 2 == 1)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x + 25*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 15*sqrt(2))); 
+      dataAdd.setRadius(5);
+      treeData.add(dataAdd); 
+      currMember++;
+    } else if (String.valueOf(len).length() == 4)
+    {
+      if ((treeData.size()+1) % 2 == 0)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x - 13*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 15*sqrt(2))); 
+      //line(dataAdd.loc.x, dataAdd.loc.y, treeData.get((treeData.size()-1)/2).loc.x, treeData.get((treeData.size()-1)/2).loc.y);
+      if ((treeData.size()+1) % 2 == 1)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x + 13*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 15*sqrt(2))); 
+      dataAdd.setRadius(5);
+      treeData.add(dataAdd); 
+      currMember++;
+    } else if (String.valueOf(len).length() == 5)
+    {
+      if ((treeData.size()+1) % 2 == 0)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x - 7*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 15*sqrt(2))); 
+      //line(dataAdd.loc.x, dataAdd.loc.y, treeData.get((treeData.size()-1)/2).loc.x, treeData.get((treeData.size()-1)/2).loc.y);
+      if ((treeData.size()+1) % 2 == 1)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x + 7*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 15*sqrt(2))); 
+      dataAdd.setRadius(5);
+      treeData.add(dataAdd); 
+      currMember++;
+    }
+    else if (String.valueOf(len).length() == 6)
+    {
+      if ((treeData.size()+1) % 2 == 0)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x - 3*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 20*sqrt(2))); 
+      //line(dataAdd.loc.x, dataAdd.loc.y, treeData.get((treeData.size()-1)/2).loc.x, treeData.get((treeData.size()-1)/2).loc.y);
+      if ((treeData.size()+1) % 2 == 1)
+        dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x + 3*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 20*sqrt(2))); 
+     
+      dataAdd.setRadius(5);
+      treeData.add(dataAdd); 
+      currMember++;
+    }
+    /*
+    else if (binaryList[1] == 49)
+     {
+     int yCorr = int(pow(2, 5)*(binaryList[1] - 48) + pow(2, 4)*(binaryList[2] - 48) + pow(2, 3)*(binaryList[3] - 48) + pow(2, 2)*(binaryList[4] - 48) + pow(2, 1)*(binaryList[5] - 48) + pow(2, 0)*(binaryList[6] - 48));
+     dataAdd.loc = new PVector(600 + (yCorr - pow(2, 5)*2.5), 430 + 6*5);
+     stroke(0);
+     if (yCorr % 2 == 0)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x + 2.5, dataAdd.loc.y - 5);
+     if (yCorr % 2 == 1)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x - 2.5, dataAdd.loc.y - 5);
+     treeData.add(dataAdd); 
+     currMember++;
+     } else if (binaryList[2] == 49)
+     {
+     int yCorr = int(pow(2, 4)*(binaryList[2] - 48) + pow(2, 3)*(binaryList[3] - 48) + pow(2, 2)*(binaryList[4] - 48) + pow(2, 1)*(binaryList[5] - 48) + pow(2, 0)*(binaryList[6] - 48));
+     dataAdd.loc = new PVector(600 + (yCorr - pow(2, 4)*2.5), 430 + 5*5);
+     stroke(0);
+     if (yCorr % 2 == 0)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x + 2.5, dataAdd.loc.y - 5);
+     if (yCorr % 2 == 1)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x - 2.5, dataAdd.loc.y - 5);
+     treeData.add(dataAdd); 
+     currMember++;
+     } else if (binaryList[3] == 49)
+     {
+     int yCorr = int(pow(2, 3)*(binaryList[3] - 48) + pow(2, 2)*(binaryList[4] - 48) + pow(2, 1)*(binaryList[5] - 48) + pow(2, 0)*(binaryList[6] - 48));
+     dataAdd.loc = new PVector(600 + (yCorr - pow(2, 3)*2.5), 430 + 4*5);
+     stroke(0);
+     if (yCorr % 2 == 0)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x + 2.5, dataAdd.loc.y - 5);
+     if (yCorr % 2 == 1)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x - 2.5, dataAdd.loc.y - 5);
+     treeData.add(dataAdd); 
+     currMember++;
+     } else if (binaryList[0] == 48 && binaryList[1] == 48 && binaryList[2] == 48 && binaryList[3] == 48 && binaryList[4] == 49)
+     {
+     int yCorr = int(pow(2, 2)*(binaryList[4] - 48) + pow(2, 1)*(binaryList[5] - 48) + pow(2, 0)*(binaryList[6] - 48));
+     dataAdd.loc = new PVector(600 + (yCorr - pow(2, 2)*2.5), 430 + 3*5);
+     stroke(0);
+     if (yCorr % 2 == 0)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x + 2.5, dataAdd.loc.y - 5);
+     if (yCorr % 2 == 1)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x - 2.5, dataAdd.loc.y - 5);
+     treeData.add(dataAdd); 
+     currMember++;
+     } else if (binaryList[5] == 49)
+     {
+     int yCorr = int(pow(2, 1)*(binaryList[5] - 48) + pow(2, 0)*(binaryList[6] - 48));
+     dataAdd.loc = new PVector(600 + (yCorr - pow(2, 1)*35), 430 + 2*20);
+     stroke(0);
+     if (yCorr % 2 == 0)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x + 35, dataAdd.loc.y - 20);
+     if (yCorr % 2 == 1)
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x - 35, dataAdd.loc.y - 20);
+     treeData.add(dataAdd); 
+     currMember++;
+     } else if (binaryList[6] == 49)
+     {
+     int yCorr = int(pow(2, 0)*(binaryList[6] - 48));
+     println(yCorr);
+     dataAdd.loc = new PVector(600 + (yCorr - pow(2, 0)*75), 430 + 1*20);
+     
+     if (yCorr % 2 == 0)
+     stroke(0);
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x + 75, dataAdd.loc.y - 20);
+     if (yCorr % 2 == 1)
+     stroke(0);
+     line(dataAdd.loc.x, dataAdd.loc.y, dataAdd.loc.x - 75, dataAdd.loc.y - 20);
+     treeData.add(dataAdd); 
+     currMember++;
+     }
+     */
   }
 
   public void deleteOut(Data dataOut)
