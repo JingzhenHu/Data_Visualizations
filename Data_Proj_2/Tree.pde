@@ -47,13 +47,13 @@ class Tree {
     text("Tommy Tree", 550, 420);
     textSize(12);
     text("Element: " + currMember, 515, 580);
-        
-    for(int i = 1; i < treeData.size(); i++)
+
+    for (int i = 1; i < treeData.size(); i++)
     {
       if (i % 2 == 0)
         line(treeData.get(i).loc.x, treeData.get(i).loc.y, treeData.get((i-2)/2).loc.x, treeData.get((i-2)/2).loc.y);
       if (i % 2 == 1)
-       line(treeData.get(i).loc.x, treeData.get(i).loc.y, treeData.get((i-1)/2).loc.x, treeData.get((i-1)/2).loc.y);
+        line(treeData.get(i).loc.x, treeData.get(i).loc.y, treeData.get((i-1)/2).loc.x, treeData.get((i-1)/2).loc.y);
     }
   }
   public void addIn(Data dataAdd)
@@ -116,15 +116,14 @@ class Tree {
       dataAdd.setRadius(5);
       treeData.add(dataAdd); 
       currMember++;
-    }
-    else if (String.valueOf(len).length() == 6)
+    } else if (String.valueOf(len).length() == 6)
     {
       if ((treeData.size()+1) % 2 == 0)
         dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x - 3*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 20*sqrt(2))); 
       //line(dataAdd.loc.x, dataAdd.loc.y, treeData.get((treeData.size()-1)/2).loc.x, treeData.get((treeData.size()-1)/2).loc.y);
       if ((treeData.size()+1) % 2 == 1)
         dataAdd.loc = new PVector((treeData.get((treeData.size()-1)/2).loc.x + 3*sqrt(2)), (treeData.get((treeData.size()-1)/2).loc.y + 20*sqrt(2))); 
-     
+
       dataAdd.setRadius(5);
       treeData.add(dataAdd); 
       currMember++;
@@ -205,20 +204,23 @@ class Tree {
 
   public void deleteOut(Data dataOut)
   {
-    //for (int i =0; i < treeData.size(); i++)
-    //{
-    //  if (dataOut.hue == treeData.get(i).hue)
-    //  {
-    //    float xCordReturn1 = random(115, 285);
-    //    float xCordReturn2 = random(515, 685);
-    //    int halfAndHalf = ceil(random(0, 2));
-    //    if (halfAndHalf == 1) treeData.get(i).loc = new PVector(xCordReturn1, random(25, 385));
-    //    if (halfAndHalf == 2) treeData.get(i).loc = new PVector(xCordReturn2, random(25, 385));
-    //    //treeData.get(i).loc = new PVector(random(115, 285), random(25, 385));
-    //    treeData.remove(i);
-    //    currMember--;
-    //    break;
-    //  }
-    //}
+    for (int i = treeData.size()-1; i > 0; i--)
+    {
+      if (dataOut.hue == treeData.get(i).hue)
+      {
+        for (int j = treeData.size()-1; j > i; j-- )
+        {
+          float xCordReturn1 = random(115, 285);
+          float xCordReturn2 = random(515, 685);
+          int halfAndHalf = ceil(random(0, 2));
+          if (halfAndHalf == 1) treeData.get(j).loc = new PVector(xCordReturn1, random(25, 385));
+          if (halfAndHalf == 2) treeData.get(j).loc = new PVector(xCordReturn2, random(25, 385));
+          treeData.get(j).setRadius(15);
+          treeData.remove(j);
+          currMember--;
+        }
+        break;
+      }
+    }
   }
 }
