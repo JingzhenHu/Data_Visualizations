@@ -6,7 +6,7 @@
  Tree: A normal Tree that created by myself (Not Binary search tree or B+tree), it can add data in the order from the left to the right, from the root(top) to the children(bottom).
  When it find the data that is needed to be deleted, it will remove all its subtree.
  Stack: A structure that will be fromed in a line and following the rule of last in, first out. 
- Graphc: A strcuture that will connect 
+ Graphc: A strcuture that will connect the data have the same color (hue value) wit randomly distribute in the room
  When you run the program, Press 'b' or 'B' to run the Bag section; Press 's' to start the set section; Press 't' or 'T' to start tree section and Press 'S' to start the stack section.
  When you want to pause the program, click and click again to recover.
  */
