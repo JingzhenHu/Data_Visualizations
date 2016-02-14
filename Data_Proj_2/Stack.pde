@@ -11,7 +11,7 @@ class Stack {
   //Stack<Data> dataStack; 
   final int MAX_VEC = 1;
   final float NOISE_DELTA = 0.05;
-  ArrayList<Data> stackData;
+  ArrayList<Data> stackData;          //using an arraylist to simulate the stack
   public Stack()
   {
     loc = new PVector(50, 250);
@@ -48,22 +48,23 @@ class Stack {
   public void displayInteral()
   {
     textSize(18);
-    text("Sera Stack", 750, 420);
+    text("Sera Stack", 765, 420);
     textSize(12);
-    text("Element: " + currMember, 715, 580);
+    text("Element: " + currMember, 745, 580);
   }
 
   public void addIn(Data dataAdd)
   {
-    yCorr = height - 15*(currMember + 1);
-    if ((currMember+1) % 9 == 0)
-    {
-      for (int i = 0; i < stackData.size(); i++)
-        stackData.get(i).loc.y += 120;    
-    }
-    int factor = (currMember + 1)/9;
-    if (factor >= 1)  yCorr += factor*120;
-    dataAdd.loc = new PVector(800, yCorr);
+    //yCorr = height - 15*(currMember + 1);
+    //if ((currMember+1) % 9 == 0)
+    //{
+    //  for (int i = 0; i < stackData.size(); i++)
+    //    stackData.get(i).loc.y += 120;    
+    //}
+    //int factor = (currMember + 1)/9;
+    //if (factor >= 1)  yCorr += factor*120;
+    dataAdd.loc = new PVector(830, height - 5*(currMember + 1));
+    dataAdd.setRadius(5);
     stackData.add(dataAdd);
     //dataStack.push((int)dataAdd.hue); 
     currMember++;
@@ -75,9 +76,12 @@ class Stack {
     {
       float xCordReturn1 = random(115, 285);
       float xCordReturn2 = random(515, 685);
-      int halfAndHalf = ceil(random(0, 2));
+      float xCordReturn3 = random(915, 1085);
+      int halfAndHalf = ceil(random(0, 3));
+      stackData.get(stackData.size()-1).setRadius(15);
       if (halfAndHalf == 1) stackData.get(stackData.size()-1).loc = new PVector(xCordReturn1, random(25, 385));
       if (halfAndHalf == 2) stackData.get(stackData.size()-1).loc = new PVector(xCordReturn2, random(25, 385));
+      if (halfAndHalf == 3) stackData.get(stackData.size()-1).loc = new PVector(xCordReturn3, random(25, 385));
       //bagData.get(i).loc = new PVector(random(115, 285), random(25, 385));
       stackData.remove(stackData.size()-1);
       currMember--;

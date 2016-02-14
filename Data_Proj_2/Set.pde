@@ -1,14 +1,14 @@
 class Set {
   final int MAX_VEC = 1;
   final float NOISE_DELTA = 0.05;
-  final int limit = 12;
+  final int limit = 15;
   PVector loc; 
   PVector vec;
   PVector acc;
   PVector tendency;
   float xOffSet;
   int currMember;
-  ArrayList<Data> setData;
+  ArrayList<Data> setData;     //using an arraylist to simulate the set
   public Set()
   {
     loc = new PVector(50, 150);
@@ -43,17 +43,17 @@ class Set {
   public void displayInteral()
   {
     textSize(18);
-    text("Sally Set", 350, 420);
+    text("Sally Set", 340, 420);
     textSize(12);
     text("Element: " + currMember, 315, 580);
-    text("Capacity: " + limit, 420, 580);
+    text("Capacity: " + limit, 390, 580);
   }
 
   public void addIn(Data dataAdd)
   {
     if (currMember < limit)
     {
-      boolean isRepeated = false;
+      boolean isRepeated = false;                   //check if the data is existed in the set. If it is repeated, then do not add.
       for (int i = 0; i < setData.size(); i++)
       {
         if (dataAdd.hue == setData.get(i).hue)
@@ -63,7 +63,8 @@ class Set {
       }
       if (!isRepeated)
       {
-        dataAdd.loc = new PVector(random(315, 485), random(435, 565));
+        dataAdd.loc = new PVector(random(315, 445), random(435, 565));
+        dataAdd.setRadius(5);
         setData.add(dataAdd); 
         currMember++;
       }
@@ -78,9 +79,12 @@ class Set {
       {
         float xCordReturn1 = random(115, 285);
         float xCordReturn2 = random(515, 685);
-        int halfAndHalf = ceil(random(0, 2));
+        float xCordReturn3 = random(915, 1085);
+        int halfAndHalf = ceil(random(0, 3));
+        setData.get(i).setRadius(15);
         if (halfAndHalf == 1) setData.get(i).loc = new PVector(xCordReturn1, random(25, 385));
         if (halfAndHalf == 2) setData.get(i).loc = new PVector(xCordReturn2, random(25, 385));
+        if (halfAndHalf == 3) setData.get(i).loc = new PVector(xCordReturn3, random(25, 385));
         //setData.get(i).loc = new PVector(random(115, 285), random(25, 385));
         setData.remove(i);
         currMember--;

@@ -4,11 +4,10 @@ class Data
   color fill;
   float hue;
   float radius;
-  //final int radius = 15;
   
    public Data(color rgb)
    {
-      loc = new PVector(random(115, 885), random(25, 385));
+      loc = new PVector(random(115, 1085), random(25, 385));
       this.fill = rgb;
       this.hue = hue(rgb);
       radius = 15;
@@ -32,7 +31,7 @@ class Data
       ellipse(loc.x, loc.y, radius, radius);
    }
    */
-   boolean checkCollison(PVector pos)
+   boolean checkCollison(PVector pos)             //check the collision based on the distance between two centers of circle and the sum of their radiuses
    {
      boolean isCollison = false;
      PVector temp = new PVector(loc.x, loc.y);

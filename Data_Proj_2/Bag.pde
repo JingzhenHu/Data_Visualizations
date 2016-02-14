@@ -1,14 +1,14 @@
 class Bag {
   final int MAX_VEC = 1;
   final float NOISE_DELTA = 0.05;
-  final int limit = 12;
+  final int limit = 20;
   PVector loc; 
   PVector vec;
   PVector acc;
   PVector tendency;
   float xOffSet;
   int currMember;
-  ArrayList<Data> bagData;
+  ArrayList<Data> bagData;     //using an arraylist to simulate the bag
 
   public Bag()
   {
@@ -60,6 +60,7 @@ class Bag {
     if (currMember < limit)
     {
       dataAdd.loc = new PVector(random(115, 285), random(435, 565));
+      dataAdd.setRadius(5);
       bagData.add(dataAdd); 
       currMember++;
     }
@@ -73,10 +74,12 @@ class Bag {
       {
         float xCordReturn1 = random(115, 285);
         float xCordReturn2 = random(515, 685);
-        int halfAndHalf = ceil(random(0,2));
+        float xCordReturn3 = random(915, 1085);
+        int halfAndHalf = ceil(random(0,3));
+        bagData.get(i).setRadius(15);
         if(halfAndHalf == 1) bagData.get(i).loc = new PVector(xCordReturn1, random(25, 385));
         if(halfAndHalf == 2) bagData.get(i).loc = new PVector(xCordReturn2, random(25, 385));
-        //bagData.get(i).loc = new PVector(random(115, 285), random(25, 385));
+        if(halfAndHalf == 3) bagData.get(i).loc = new PVector(xCordReturn3, random(25, 385));
         bagData.remove(i);
         currMember--;
         break;
