@@ -5,9 +5,11 @@ VisualizationI mapNE;
 VisualizationII visForNE;
 //VisualizationII visForPE;
 int pause = 0;
+PFont font;
 void setup()
 {
-  size(1200, 800);
+  size(1280, 743, P2D);
+  font = createFont("Arial", 15);
   //thread("loadDoc");
   mapNE = new VisualizationI(csvTable);
   visForNE = new VisualizationII(nuclearEnergy);
@@ -17,14 +19,16 @@ void setup()
   //visForPE.parse();
 }
 void draw() {
-  //background(0);
-  if(pause == 0)
-  mapNE.show();
-  if(pause == 1)
-  visForNE.show();
+  if (pause == 0)
+    mapNE.show();
+  if (pause == 1)
+  {  
+    background(0);
+    visForNE.show();
+  }
 }
 
 void mouseClicked()
 {
-   pause = (pause + 1) % 2;  
+  pause = (pause + 1) % 2;
 }

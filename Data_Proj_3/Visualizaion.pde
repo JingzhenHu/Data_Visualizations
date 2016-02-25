@@ -4,14 +4,13 @@ class VisualizationI {
   PImage bg;
   int totalMW;   //383513
   final float FACTOR = 234.0; // to scale to image size
-  PFont font;
+
   VisualizationI(String csvName) {
     bg = loadImage("http://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Kavraiskiy_VII_projection_SW.jpg/1280px-Kavraiskiy_VII_projection_SW.jpg");
     imageMode(CENTER);
     table = loadTable(csvName, "header");
     informs = new DataForMap[table.getRowCount()];
     totalMW = 0;
-    font = createFont("Arial", 15);
   }
   void parse() {
     int i = 0;
@@ -26,11 +25,11 @@ class VisualizationI {
   {
     pushMatrix();
     translate(width/2, height/2);
-    tint(128);
+    //tint(128);
     image(bg, 0, 0);
-    for(int i = 0; i < informs.length; i++)
+    for (int i = 0; i < informs.length; i++)
     {
-        setPoint(informs[i]);
+      setPoint(informs[i]);
     }
     popMatrix();
   }
@@ -40,12 +39,13 @@ class VisualizationI {
     ellipseMode(CENTER);
     float xp = kavraX(radians(data.loc.x), radians(data.loc.y))*FACTOR;
     float yp = kavraY(radians(data.loc.x), radians(data.loc.y))*FACTOR;
-    fill(255,0,0);
+    strokeWeight(2);
+    fill(255, 0, 0);
     ellipse(xp, yp, data.numRadius, data.numRadius);
-    if(mouseX>=xp - data.numRadius/2 && mouseX <= xp + data.numRadius/2 && mouseY>=yp - data.numRadius/2 && mouseY <= yp + data.numRadius/2)
+    if (mouseX>=xp - data.numRadius/2 && mouseX <= xp + data.numRadius/2 && mouseY>=yp - data.numRadius/2 && mouseY <= yp + data.numRadius/2)
     {
-       textFont(font, 15);
-       text(data.countryName, xp + 10, yp);
+      textFont(font, 15);
+      text(data.countryName, xp + 10, yp);
     }
   }
 
@@ -63,6 +63,7 @@ class VisualizationI {
 class VisualizationII {
   JSONObject energy;
   ArrayList<DataForChart> data;
+
   VisualizationII(String dataset)
   {
     energy = loadJSONObject(dataset);
@@ -75,11 +76,29 @@ class VisualizationII {
   }
   void show()
   {
-    stroke(178);
+    stroke(255);
     strokeWeight(2);
-    //println(data.get(0).year);
-    //text(data.get(0).year, width/2, height/2);
-    //for (int i = 0; i < 66; i++)
-    //println(data.get(i).quanlity);
+    line(83, 700, 83, 60);
+    for (int i = 0; i < data.size(); i ++)
+    {
+      fill(255, 0, 0);
+      rect(100 + i*17, 700, -17, -data.get(i).quanlity/15);
+      if (i % 10 == 0)
+      {
+        fill(255);
+        textFont(font, 15);
+        text(data.get(i).year, 80 + i*17, 715);
+      }
+    }
+    for(int i = 0; i < 10 ; i++)
+    {
+       fill(255);
+       textFont(font, 15);
+       text(0 + i*1000, 50, 700-66*i);
+    }
+    fill(255);
+    textFont(font, 20);
+    text("Year", 1210, 715);
+    text("World Anuual Nuclear Electric Power C/P (Trillion Btu)", 50, 50);
   }
 }
