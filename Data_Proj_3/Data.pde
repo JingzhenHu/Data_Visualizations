@@ -1,13 +1,13 @@
-class Data{
+class DataForChart{
  int year;
  float quanlity;
  
- Data()
+ DataForChart()
  {
    year = 0;
    quanlity = 0;
  }
- Data(int year, float quanlity)
+ DataForChart(int year, float quanlity)
  {
    this.year = year;
    this.quanlity = quanlity;
@@ -19,5 +19,19 @@ class Data{
  void setQuanlity(float quanlity)
  {
    this.quanlity = quanlity;
+ }
+}
+
+class DataForMap {
+ String countryName;
+ PVector loc;
+ int numRadius;
+ int hiddenValue;
+ DataForMap(String countryName, PVector loc, int numRadius, int hiddenValue)
+ {
+    this.countryName = countryName;
+    this.loc = loc;
+    this.numRadius = numRadius;
+    this.hiddenValue = hiddenValue;
  }
 }
