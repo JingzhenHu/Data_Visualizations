@@ -15,6 +15,7 @@ void setup()
   visForNE = new VisualizationII(nuclearEnergy);
   //visForPE = new VisualizationII(primaryEnergy);
   mapNE.parse();
+  mapNE.setting();
   visForNE.parse();
   //visForPE.parse();
 }

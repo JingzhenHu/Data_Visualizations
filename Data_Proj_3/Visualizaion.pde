@@ -1,6 +1,7 @@
 class VisualizationI {
   Table table;
   DataForMap[] informs;
+  ArrayList<PVector> espLoc;
   PImage bg;
   int totalMW;   //383513
   final float FACTOR = 234.0; // to scale to image size
@@ -10,6 +11,7 @@ class VisualizationI {
     imageMode(CENTER);
     table = loadTable(csvName, "header");
     informs = new DataForMap[table.getRowCount()];
+    espLoc = new ArrayList<PVector>();
     totalMW = 0;
   }
   void parse() {
@@ -21,32 +23,41 @@ class VisualizationI {
       i++;
     }
   }
+  void setting()
+  {
+    for (int i = 0; i < informs.length; i++)
+    {
+      setPoint(informs[i]);
+    }
+  }
   void show()
   {
     pushMatrix();
     translate(width/2, height/2);
     //tint(128);
     image(bg, 0, 0);
-    for (int i = 0; i < informs.length; i++)
+    for (int i = 0; i < espLoc.size(); i++)
     {
-      setPoint(informs[i]);
+      strokeWeight(2);
+      fill(255, 0, 0);
+      ellipse(espLoc.get(i).x, espLoc.get(i).y, informs[i].numRadius, informs[i].numRadius);
+      if (mouseX>=espLoc.get(i).x - informs[i].numRadius/2+width/2 && mouseX <= espLoc.get(i).x + informs[i].numRadius/2+width/2 && mouseY>=espLoc.get(i).y - informs[i].numRadius/2+height/2 && mouseY <= espLoc.get(i).y + informs[i].numRadius/2+height/2)
+      {
+        fill(255);
+        textFont(font, 15);
+        text(informs[i].countryName, espLoc.get(i).x + 10, espLoc.get(i).y);
+        text(informs[i].hiddenValue, espLoc.get(i).x + 10, espLoc.get(i).y+ 15);
+      }
     }
     popMatrix();
   }
   void setPoint(DataForMap data) {
     noFill();
     stroke(255, 200, 10);
-    ellipseMode(CENTER);
+    //ellipseMode(CENTER);
     float xp = kavraX(radians(data.loc.x), radians(data.loc.y))*FACTOR;
     float yp = kavraY(radians(data.loc.x), radians(data.loc.y))*FACTOR;
-    strokeWeight(2);
-    fill(255, 0, 0);
-    ellipse(xp, yp, data.numRadius, data.numRadius);
-    if (mouseX>=xp - data.numRadius/2 && mouseX <= xp + data.numRadius/2 && mouseY>=yp - data.numRadius/2 && mouseY <= yp + data.numRadius/2)
-    {
-      textFont(font, 15);
-      text(data.countryName, xp + 10, yp);
-    }
+    espLoc.add(new PVector(xp, yp));
   }
 
   /// mapping
@@ -90,11 +101,11 @@ class VisualizationII {
         text(data.get(i).year, 80 + i*17, 715);
       }
     }
-    for(int i = 0; i < 10 ; i++)
+    for (int i = 0; i < 10; i++)
     {
-       fill(255);
-       textFont(font, 15);
-       text(0 + i*1000, 50, 700-66*i);
+      fill(255);
+      textFont(font, 15);
+      text(0 + i*1000, 50, 700-66*i);
     }
     fill(255);
     textFont(font, 20);
