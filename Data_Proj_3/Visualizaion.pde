@@ -89,16 +89,16 @@ class VisualizationII {
   {
     stroke(255);
     strokeWeight(2);
-    line(83, 700, 83, 60);
+    line(100, 700, 100, 60);
     for (int i = 0; i < data.size(); i ++)
     {
       fill(255, 0, 0);
-      rect(100 + i*17, 700, -17, -data.get(i).quanlity/15);
+      rect(100 + i*17, 700, 17, -data.get(i).quanlity/15);
       if (i % 10 == 0)
       {
         fill(255);
         textFont(font, 15);
-        text(data.get(i).year, 80 + i*17, 715);
+        text(data.get(i).year, 90 + i*17, 715);
       }
     }
     for (int i = 0; i < 10; i++)
@@ -111,5 +111,14 @@ class VisualizationII {
     textFont(font, 20);
     text("Year", 1210, 715);
     text("World Anuual Nuclear Electric Power C/P (Trillion Btu)", 50, 50);
+    for (int i = 0; i < data.size(); i++)
+    {
+      if (mouseX>=100 + i*17 && mouseX <= 100 + (i+1)*17 && mouseY <= 700 && mouseY >=700-data.get(i).quanlity/15)
+      {
+        fill(255);
+        textFont(font, 15);
+        text(data.get(i).quanlity, 100+ i*17, 700-data.get(i).quanlity/15-10);
+      }
+    }
   }
 }
