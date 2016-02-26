@@ -25,13 +25,13 @@ class DataForChart{
 class DataForMap {
  String countryName;
  PVector loc;
- int numRadius;
+ int numDiameter;
  int hiddenValue;
- DataForMap(String countryName, PVector loc, int numRadius, int hiddenValue)
+ DataForMap(String countryName, PVector loc, int numDiameter, int hiddenValue)
  {
     this.countryName = countryName;
     this.loc = loc;
-    this.numRadius = numRadius;
+    this.numDiameter = numDiameter;
     this.hiddenValue = hiddenValue;
  }
 }
