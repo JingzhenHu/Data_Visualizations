@@ -34,7 +34,7 @@ class VisualizationI {
   {
     pushMatrix();
     translate(width/2, height/2);
-    //tint(128);
+    tint(128);
     image(bg, 0, 0);
     for (int i = 0; i < espLoc.size(); i++)
     {
