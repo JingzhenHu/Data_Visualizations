@@ -1,6 +1,6 @@
 #!/url/bin/env ruby
 #Journey Hu, 45221362
-# CRCP 3310 Project4: A simple database-backed songs app.
+# CRCP 3310 Project4: A Relational Database Management Systems
 # This program allows to see the songs stored ina sqlite3 database and prompts
 # users to add new artists, albums, genres, and songs
 
@@ -25,11 +25,13 @@ puts "	5. Add a new song."
 puts "Enter a choice: ____ "
 
 option = gets.chomp
-index = 0
+
 if(option.to_i == 1)
-	puts "artistName         albumName             songName         genresName"
+	#puts "artistName         albumName             songName         genresName"
+	printf "%-20s %-45s %-30s %-20s \n","artistName","albumName","songName","genresName"
 	db.execute(SOL_DISPLAY_ALL_SONGS) do |row| #loop 
-		puts "#{row[0]}    #{row[1]}     #{row[2]}      #{row[3]}"
+		#puts "#{row[0]}    #{row[1]}     #{row[2]}      #{row[3]}"
+		printf  "%-20s %-45s %-30s %-20s \n","#{row[0]}","#{row[1]}","#{row[2]}","#{row[3]}"
 	end
 end
 
@@ -96,4 +98,4 @@ db.close # close the database
 # chmod u+x songs.rb and use ./songs.rb to execute the program
 
 
-# puts "#{row[0]}. #{row[1]}"
+
