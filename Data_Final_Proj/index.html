@@ -1,0 +1,77 @@
+<!-- <!DOCTYPE html>
+<html lang = "en">
+<head>
+	<title>The Awesome Visualzation of Nuclear Electronic Energy</title>
+	<link rel = "stylesheet" href = "main.css">
+	<script src = "main.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<h1 style = "color: red"> The Awesome Visualzation of Nuclear Electronic Energy</h1>
+	<h2>Good and Better in the following</h2>
+	<p> <a href= "http://api.eia.gov/series/?api_key=5A90ED6BF982DD3EF3CFA866AAADB8CB&series_id=TOTAL.NUETBUS.A" title = "Cool!">Awesone</a> website!!<span style = "font-size:2em;">alelelelelelellelellele</span>le</p>
+	<div style="display: inline-block;
+	width: 1280px;
+	height: 743px;
+	background-color: teal;
+	background: url('http://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Kavraiskiy_VII_projection_SW.jpg/1280px-Kavraiskiy_VII_projection_SW.jpg');"></div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html> 
+  <head> 
+        <title>The Awesome Visualzation of Nuclear Electronic Energy</title> 
+        <link rel = "stylesheet" href = "main.css">
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+  </head> 
+    <body> 
+		<p>The Awesome Visualzation of Nuclear Electronic Energy</p>
+		<div style="display: inline-block;
+			width: 1280px;
+			height: 743px;
+			background-color: teal;
+			background: url('http://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Kavraiskiy_VII_projection_SW.jpg/1280px-Kavraiskiy_VII_projection_SW.jpg');">
+		</div>
+        <script>  
+        // Converts from degrees to radians.
+		Math.radians = function(degrees) {
+  			return degrees * Math.PI / 180;
+		};
+		var width = 1280;	
+		var height = 743;
+
+		var svg = d3.select("body")			
+				.select("div")
+				.append("svg")				
+				.attr("width", width)		
+				.attr("height", height)	
+	
+		d3.csv("/Data/Nuclear.csv", function(data) {	
+			var FACTOR = 234.0;
+			console.log(data);
+			svg.selectAll("circle")
+		   	   .data(data)
+		       .enter()
+		   	   .append("circle")
+		   	   .attr("cx",function(d) {
+		   	   		var xPosition = ((Math.radians(d.Longitude) * 3)/ (2*Math.PI)) * Math.sqrt(Math.PI*Math.PI/3 - Math.radians(d.Latitude)*Math.radians(d.Latitude))*FACTOR;
+		   	   		//console.log(xPosition);
+		   			return xPosition + width/2;
+		   		})
+		   	   .attr("cy",function(d){
+		   	   		var yPosition = Math.radians(d.Latitude) * (-1) * FACTOR;
+		   	   		//console.log(yPosition);
+					return yPosition + height/2;
+		  		})
+		   	   .attr("r",function(d){
+		   	   		//console.log(d.Numbers);
+		   			return d.Numbers/2;
+		  		})
+		   	   .attr("fill","orange")
+		   	   .attr("stroke-width", 2)
+		   	   .attr("stroke", "red");
+			});
+
+        </script>
+    </body> 
+</html>

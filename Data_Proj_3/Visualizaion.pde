@@ -58,6 +58,7 @@ class VisualizationI {
     noFill();
     stroke(255, 200, 10);
     //ellipseMode(CENTER);
+    println(data.loc.y);
     float xp = kavraX(radians(data.loc.x), radians(data.loc.y))*FACTOR;
     float yp = kavraY(radians(data.loc.x), radians(data.loc.y))*FACTOR;
     espLoc.add(new PVector(xp, yp));
@@ -66,6 +67,8 @@ class VisualizationI {
   /// mapping
   float kavraX (float longitude, float latitude) { // Kavra for Kavrayskiy 
     // formula from http://en.wikipedia.org/wiki/Kavrayskiy_VII_projection
+    //println(latitude);
+    //println(PI*PI/3 - latitude*latitude);
     return ((3 * longitude) / TWO_PI)*sqrt(PI*PI/3 - latitude*latitude);
   } 
 
